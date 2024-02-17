@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RekeningBankController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,5 +38,8 @@ Route::get('/home', function () {
 //Jika sudah login
 Route::middleware(['auth'])->group(function () {
     Route::view('/dashboard', 'Pages.dashboard')->name('dashboard');
+    Route::resource('dashboard/kategori', KategoriController::class);
+    Route::resource('dashboard/rekeningbank', RekeningBankController::class);
+    Route::resource('dashboard/datapengguna', RegisterController::class);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

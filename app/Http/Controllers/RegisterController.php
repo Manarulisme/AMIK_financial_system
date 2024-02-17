@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Register;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -13,8 +14,9 @@ class RegisterController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-
+    {   $users = User::all();
+        $i=0;
+        return view('Pages.data_pengguna.index', compact('users','i'));
     }
 
     /**
