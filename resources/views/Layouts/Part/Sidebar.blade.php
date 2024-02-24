@@ -73,7 +73,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                          <a href="pages/charts/chartjs.html" class="nav-link {{ Request::is('dashboard/posts') ? 'active' : '' }}">
+                          <a href="{{ route('pemasukan.index') }}" class="nav-link {{ Request::is('dashboard/pemasukan') ? 'active' : '' }}">
                             <i class="far fa-solid fa-arrow-down nav-icon"></i>
                             <p>Pemasukan</p>
                           </a>

@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PemasukanController;
+use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RekeningBankController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/dashboard', 'Pages.dashboard')->name('dashboard');
     Route::resource('dashboard/kategori', KategoriController::class);
     Route::resource('dashboard/rekeningbank', RekeningBankController::class);
-    Route::resource('dashboard/datapengguna', RegisterController::class);
+    Route::resource('dashboard/datapengguna', UserController::class);
+    Route::resource('dashboard/pemasukan', PemasukanController::class);
+    Route::resource('dashboard/pengeluaran', PengeluaranController::class);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/dashboard/datapengguna/{user_id}/update', [UserController::class, 'edit']);
 });

@@ -21,6 +21,8 @@
 {{-- data tables --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 
+    {{-- image preview --}}
+
     @vite([])
 </head>
 <body class="hold-transition sidebar-mini">
@@ -76,20 +78,15 @@
         });
     </script>
 
-@push('notif_berhasil')
-<script>
-    //message with toastr
-    @if(session()->has('success'))
+@stack('notif_berhasil')
 
-        toastr.success('{{ session('success') }}', 'BERHASIL!');
+@stack('format_rupiah')
 
-    @elseif(session()->has('error'))
+@stack('image_viewer')
 
-        toastr.error('{{ session('error') }}', 'GAGAL!');
+@stack('script_image')
 
-    @endif
-</script>
-@endpush
+@stack('ckeditor')
 
 
 </body>

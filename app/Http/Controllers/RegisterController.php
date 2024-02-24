@@ -14,9 +14,8 @@ class RegisterController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   $users = User::all();
-        $i=0;
-        return view('Pages.data_pengguna.index', compact('users','i'));
+    {
+
     }
 
     /**
@@ -27,6 +26,8 @@ class RegisterController extends Controller
         return view('Pages.Authentikasi.Register');
 
     }
+
+
 
     /**
      * Store a newly created resource in storage.

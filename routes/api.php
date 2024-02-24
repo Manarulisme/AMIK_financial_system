@@ -27,3 +27,4 @@ Route::get('/posts', function(){
 // Route::get('/posts', [PostController::class,'index']);
 Route::resource('/posts', PostController::class);
 
+
