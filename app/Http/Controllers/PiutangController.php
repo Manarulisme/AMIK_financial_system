@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\kategori;
-use App\Models\pengeluaran;
+use App\Models\Piutang;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class PengeluaranController extends Controller
+class PiutangController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pengeluarans = pengeluaran::orderBy('id', 'desc')->get();
+        $piutangs = Piutang::orderBy('id', 'desc')->get();
         $kategoris =kategori::all();
         $i=0;
-        return view('Pages.data_transaksi.transaksi_keluar.index', compact('pengeluarans', 'kategoris', 'i'));
+        return view('Pages.data_piutang.index', compact('piutangs', 'kategoris', 'i'));
     }
 
     /**
@@ -37,6 +37,7 @@ class PengeluaranController extends Controller
     {
         $this->validate($request,[
             'name' => 'required',
+            'kepada' => 'required',
             'nominal' => 'required',
             'tanggal' => 'required',
             'kategori_id' => 'required'
@@ -46,12 +47,13 @@ class PengeluaranController extends Controller
 
         if ($request->hasFile('bukti_pembayaran')) {
             $bukti_pembayaran = $request->file('bukti_pembayaran');
-            $bukti_pembayaran->storeAs('public/bukti_pengeluaran', $bukti_pembayaran->hashName());
+            $bukti_pembayaran->storeAs('public/bukti_piutang', $bukti_pembayaran->hashName());
 
-            pengeluaran::create([
+            Piutang::create([
                 'bukti_pembayaran' => $bukti_pembayaran->hashName(),
                 'tanggal' => $request->tanggal,
                 'name' => $request->name,
+                'kepada' => $request->kepada,
                 'nominal' => $fixnominal,
                 'keterangan' => $request-> keterangan,
                 'kategori_id' => $request->kategori_id,
@@ -60,9 +62,10 @@ class PengeluaranController extends Controller
 
         }
         else{
-            pengeluaran::create([
+            Piutang::create([
                 'tanggal' => $request->tanggal,
                 'name' => $request->name,
+                'kepada' => $request->kepada,
                 'nominal' => $fixnominal,
                 'keterangan' => $request-> keterangan,
                 'kategori_id' => $request->kategori_id,
@@ -70,54 +73,56 @@ class PengeluaranController extends Controller
             ]);
         }
 
-        return redirect()->route('pengeluaran.index');
+        return redirect()->route('piutang.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id): View
+    public function show(String $id): View
     {
-        $pengeluaran = pengeluaran::findOrFail($id);
-        return view('Pages.data_transaksi.transaksi_keluar.show', compact('pengeluaran'));
+        $piutang = Piutang::findOrFail($id);
+        return view('Pages.data_piutang.show', compact('piutang'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id): View
+    public function edit(String $id): View
     {
         $kategoris = kategori::all();
-        $pengeluaran = pengeluaran::findOrFail($id);
-        return view('Pages.data_transaksi.transaksi_keluar.edit', compact('pengeluaran','kategoris'));
+        $piutang = Piutang::findOrFail($id);
+        return view('Pages.data_piutang.edit', compact('piutang','kategoris'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id): RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
         $this->validate($request,[
             'name' => 'required',
+            'kepada' => 'required',
             'nominal' => 'required',
             'tanggal' => 'required',
             'kategori_id' => 'required'
         ]);
 
-        $pengeluaran = pengeluaran::findOrFail($id);
+        $piutang = Piutang::findOrFail($id);
 
         $fixnominal = str_replace(".", "", $request->nominal);
 
         if ($request->hasFile('bukti_pembayaran')) {
-            $bukti_pembayaran = $request->file('bukti_pembayaran');
-            $bukti_pembayaran->storeAs('public/bukti_pengeluaran', $bukti_pembayaran->hashName());
+            $bukti_piutang = $request->file('bukti_pembayaran');
+            $bukti_piutang->storeAs('public/bukti_piutang', $bukti_piutang->hashName());
 
-            Storage::delete('public/bukti_pengeluran'.$pengeluaran->bukti_pembayaran);
+            Storage::delete('public/bukti_piutang'.$piutang->bukti_pembayaran);
 
-            $pengeluaran->update([
-                'bukti_pembayaran' => $bukti_pembayaran->hashName(),
+            $piutang->update([
+                'bukti_pembayaran' => $bukti_piutang->hashName(),
                 'tanggal' => $request->tanggal,
                 'name' => $request->name,
+                'kepada' => $request->kepada,
                 'nominal' => $fixnominal,
                 'keterangan' => $request-> keterangan,
                 'kategori_id' => $request->kategori_id,
@@ -126,9 +131,10 @@ class PengeluaranController extends Controller
 
         }
         else{
-            $pengeluaran->update([
+            $piutang->update([
                 'tanggal' => $request->tanggal,
                 'name' => $request->name,
+                'kepada' => $request->kepada,
                 'nominal' => $fixnominal,
                 'keterangan' => $request-> keterangan,
                 'kategori_id' => $request->kategori_id,
@@ -136,7 +142,7 @@ class PengeluaranController extends Controller
             ]);
         }
 
-        return redirect()->route('pengeluaran.index');
+        return redirect()->route('hutang.index');
     }
 
     /**
@@ -144,9 +150,9 @@ class PengeluaranController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        $pengeluaran = pengeluaran::findOrfail($id);
-        $pengeluaran->delete();
+        $hutang = Piutang::findOrfail($id);
+        $hutang->delete();
 
-        return redirect()->route('pengeluaran.index')->with(['success' => 'Data Berhasil dihapus']);
+        return redirect()->route('piutang.index')->with(['success' => 'Data Berhasil dihapus']);
     }
 }

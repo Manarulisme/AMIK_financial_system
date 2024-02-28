@@ -16,7 +16,7 @@
 
   {{-- Favicon Logo AMIK --}}
   <link rel="icon" type="image/x-icon" href="{{ asset('Assets/favicon/logoamik.ico') }}">
-  @vite([])
+
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">

@@ -47,7 +47,7 @@ class PemasukanController extends Controller
 
         if ($request->hasFile('bukti_pembayaran')) {
             $bukti_pembayaran = $request->file('bukti_pembayaran');
-            $bukti_pembayaran->storeAs('public/bukti_pembayaran', $bukti_pembayaran->hashName());
+            $bukti_pembayaran->storeAs('public/bukti_pemasukan', $bukti_pembayaran->hashName());
 
             pemasukan::create([
                 'bukti_pembayaran' => $bukti_pembayaran->hashName(),
@@ -111,9 +111,9 @@ class PemasukanController extends Controller
 
         if ($request->hasFile('bukti_pembayaran')) {
             $bukti_pembayaran = $request->file('bukti_pembayaran');
-            $bukti_pembayaran->storeAs('public/bukti_pembayaran', $bukti_pembayaran->hashName());
+            $bukti_pembayaran->storeAs('public/bukti_pemasukan', $bukti_pembayaran->hashName());
 
-            Storage::delete('public/bukti_pembayaran'.$pemasukan->bukti_pembayaran);
+            Storage::delete('public/bukti_pemasukan'.$pemasukan->bukti_pembayaran);
 
             $pemasukan->update([
                 'bukti_pembayaran' => $bukti_pembayaran->hashName(),

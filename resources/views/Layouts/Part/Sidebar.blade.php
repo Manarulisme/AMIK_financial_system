@@ -79,7 +79,7 @@
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="pages/charts/flot.html" class="nav-link {{ Request::is('dashboard/posts') ? 'active' : '' }}">
+                          <a href="{{ route('pengeluaran.index')}}" class="nav-link {{ Request::is('dashboard/pengeluaran') ? 'active' : '' }}">
                             <i class="far fa-solid fa-arrow-up nav-icon"></i>
                             <p>Pengeluaran</p>
                           </a>
@@ -103,13 +103,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                          <a href="pages/charts/chartjs.html" class="nav-link {{ Request::is('dashboard/posts') ? 'active' : '' }}">
+                          <a href="{{route('hutang.index')}}" class="nav-link {{ Request::is('dashboard/hutang') ? 'active' : '' }}">
                             <i class="far fa-solid fa-hand-holding-dollar nav-icon"></i>
                             <p>Data Hutang</p>
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="pages/charts/flot.html" class="nav-link {{ Request::is('dashboard/posts') ? 'active' : '' }}">
+                          <a href="{{route('piutang.index')}}" class="nav-link {{ Request::is('dashboard/piutang') ? 'active' : '' }}">
                             <i class="far fa-solid fa-hand-holding-hand nav-icon"></i>
                             <p>Data Piutang</p>
                           </a>

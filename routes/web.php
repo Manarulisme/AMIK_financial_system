@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\HutangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\PiutangController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RekeningBankController;
 use App\Http\Controllers\UserController;
@@ -46,6 +48,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('dashboard/datapengguna', UserController::class);
     Route::resource('dashboard/pemasukan', PemasukanController::class);
     Route::resource('dashboard/pengeluaran', PengeluaranController::class);
+    Route::resource('dashboard/hutang', HutangController::class);
+    Route::resource('dashboard/piutang', PiutangController::class);
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/dashboard/datapengguna/{user_id}/update', [UserController::class, 'edit']);
 });

@@ -23,7 +23,6 @@
 
     {{-- image preview --}}
 
-    @vite([])
 </head>
 <body class="hold-transition sidebar-mini">
 

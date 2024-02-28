@@ -20,8 +20,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
-
-  @vite([])
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
