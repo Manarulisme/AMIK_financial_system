@@ -125,7 +125,7 @@
                   </li>
 
                   <li class="nav-item">
-                    <a href="#" class="nav-link {{ Request::is('dashboard/agendaterdekat') ? 'active' : '' }}">
+                    <a href="{{ url('/dashboard/laporan') }}" class="nav-link {{ Request::is('dashboard/agendaterdekat') ? 'active' : '' }}">
                        <i class="far fa-solid fa-regular fa-file-invoice nav-icon"></i>
                       <p>Laporan</p>
                     </a>

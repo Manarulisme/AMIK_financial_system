@@ -13,7 +13,7 @@ Dashboard
               <!-- small box -->
               <div class="small-box bg-primary bg-gradient">
                 <div class="inner">
-                  <h3>Rp.100.000</h3>
+                  <h3>Rp.{{ number_format($pemasukan_today->pluck('nominal')->sum(),0,',','.')  }}</h3>
 
                   <p>Pemasukan Hari ini</p>
                 </div>
@@ -28,7 +28,7 @@ Dashboard
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>Rp.600.000</h3>
+                    <h3>Rp.{{ number_format($pemasukan_current_month->pluck('nominal')->sum(),0,',','.')  }}</h3>
 
                   <p>Pemasukan Bulan ini</p>
                 </div>
@@ -43,7 +43,7 @@ Dashboard
               <!-- small box -->
               <div class="small-box" style="background-color: #3db4d8;">
                 <div class="inner">
-                    <h3>Rp.1000.000</h3>
+                    <h3>Rp.{{ number_format($pemasukan_current_year->pluck('nominal')->sum(),0,',','.')  }}</h3>
 
                   <p>Pemasukan Tahun ini</p>
                 </div>
@@ -58,7 +58,7 @@ Dashboard
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>Rp.150.000.000</h3>
+                    <h3>Rp.{{ number_format($pemasukan_semua->pluck('nominal')->sum(),0,',','.')  }}</h3>
 
 
                   <p>Seluruh Pemasukan</p>
@@ -77,7 +77,7 @@ Dashboard
               <!-- small box -->
               <div class="small-box" style="background-color: #ffb515;">
                 <div class="inner">
-                    <h3>Rp.50.000</h3>
+                    <h3>Rp.{{ number_format($pengeluaran_today->pluck('nominal')->sum(),0,',','.')  }}</h3>
 
 
                   <p>Pengeluaran Hari ini</p>
@@ -93,7 +93,7 @@ Dashboard
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>Rp.300.000</h3>
+                    <h3>Rp.{{ number_format($pengeluaran_current_month->pluck('nominal')->sum(),0,',','.')  }}</h3>
 
 
                   <p>Pengeluaran Bulan ini</p>
@@ -109,7 +109,7 @@ Dashboard
               <!-- small box -->
               <div class="small-box" style="background-color: #fccf52;">
                 <div class="inner">
-                    <h3>Rp.1.500.000</h3>
+                    <h3>Rp.{{ number_format($pengeluaran_current_year->pluck('nominal')->sum(),0,',','.')  }}</h3>
 
 
                   <p>Pengeluaran Tahun ini</p>
@@ -125,7 +125,7 @@ Dashboard
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>Rp.3.000.000</h3>
+                    <h3>Rp.{{ number_format($pengeluaran_semua->pluck('nominal')->sum(),0,',','.')  }}</h3>
 
 
                   <p>Seluruh Pengeluaran</p>
@@ -140,6 +140,5 @@ Dashboard
           </div>
     </div>
   </div>
-
 
 @endsection

@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 
     {{-- image preview --}}
-
+    @vite([])
 </head>
 <body class="hold-transition sidebar-mini">
 

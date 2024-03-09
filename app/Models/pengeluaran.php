@@ -11,6 +11,7 @@ class pengeluaran extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $table = 'pengeluarans';
 
     public function kategori(): BelongsTo
     {

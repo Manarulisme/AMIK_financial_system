@@ -18,6 +18,7 @@ class PemasukanController extends Controller
     public function index():View
     {
         $pemasukans = pemasukan::orderBy('id', 'desc')->get();
+        // $pemasukans = pemasukan::whereDate('tanggal', now())->orderBy('id', 'desc')->get();
         $kategoris =kategori::all();
         $i=0;
         return view('Pages.data_transaksi.transaksi_masuk.index', compact('pemasukans', 'kategoris','i'));
